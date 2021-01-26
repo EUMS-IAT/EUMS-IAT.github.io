@@ -4,7 +4,7 @@ define(['managerAPI'], function(Manager) {
     API.setName('mgr');
     API.addSettings('skip',true);
     API.addSettings('skin','demo');
-    API.addSettings('logger',{type:'csv', url:'csv.php'});
+    API.addSettings('logger',{type:'csv', url:'https://developmentserver.homehealth.digital/iat_test/'});
 
     var raceSet = API.shuffle(['a','b'])[0];
     var blackLabels = [];
