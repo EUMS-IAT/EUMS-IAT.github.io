@@ -4,7 +4,7 @@ define(['managerAPI'], function(Manager) {
     API.setName('mgr');
     API.addSettings('skip',true);
     API.addSettings('skin','demo');
-    API.addSettings('logger',{type:'csv', url:'https://developmentserver.homehealth.digital/iat_test/'});
+    API.addSettings('logger',{type:'csv', url:'csv.php'});
 
     var raceSet = API.shuffle(['a','b'])[0];
     var blackLabels = [];
@@ -76,11 +76,6 @@ define(['managerAPI'], function(Manager) {
             header: 'Implicit Association Test'
         }],
 
-        email: [{
-            type: 'quest',
-            name: 'email',
-            scriptUrl: 'email.js'
-        }],
 
         explicits: [{
             type: 'quest',
@@ -99,7 +94,6 @@ define(['managerAPI'], function(Manager) {
             name: 'demographics',
             scriptUrl:'demographics.js'
         }],
-
 
         mrscale: [{
             type: 'quest',
@@ -130,31 +124,30 @@ define(['managerAPI'], function(Manager) {
 
     API.addSequence([
         {inherit: 'realstart'},
-        {inherit: 'email'},
-        {
-            mixer:'random',
-            data:[
-                {inherit: 'explicits'},
+        // {
+        //     mixer:'random',
+        //     data:[
+        //         {inherit: 'explicits'},
                 {inherit: 'demographics'},
                
 
-                // force the instructions to preceed the iat
-                {
-                    mixer: 'wrapper',
-                    data: [
+        //         // force the instructions to preceed the iat
+        //         {
+        //             mixer: 'wrapper',
+        //             data: [
                         {inherit: 'raceiat_instructions'},
-                        {inherit: 'raceiat'}
-                    ]
-                }
-            ]
-        },
+                        {inherit: 'raceiat'},
+        //             ]
+        //         }
+        //     ]
+        // },
 
         {
             mixer:'choose',
             n:1,
             data:[
-                { inherit: 'mrscale' },
-                { inherit: 'rwascale' }
+                // { inherit: 'mrscale' },
+                // { inherit: 'rwascale' }
             ]
         },
 
