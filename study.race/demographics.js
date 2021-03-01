@@ -73,6 +73,37 @@ define(['questAPI','underscore'], function(Quest,_){
     /**
 	* Actual questions
 	*/
+    API.addQuestionsSet('EUMSStudent',{
+        inherit: 'singleChoice',
+        name: 'EUMSStudent',
+        stem: 'Are you a Exeter University student?',
+        answers: [
+            {text:'Yes',value:1},
+            {text:'No',value:2}
+        ]
+    });
+   
+    API.addQuestionsSet('degree',{
+        inherit: 'singleChoice',
+        name: 'degree',
+        stem: 'What degree are you studying?',
+        answers: [
+            {text:'Medicine BMBS ',value:1},
+            {text:'Non-Medical degree',value:2}
+        ]
+    });
+    API.addQuestionsSet('YearGroup',{
+        inherit: 'singleChoice',
+        name: 'YearGroup',
+        stem: 'How many years of study (rounded up to the nearest whole number) have you undertaken at university?',
+        answers: [
+            {text:'One',value:1},
+            {text:'Two',value:2},
+            {text:'Three',value:3},
+            {text:'Four',value:4},
+            {text:'Five',value:5},
+        ]
+    });
     API.addQuestionsSet('birthSex',{
         inherit: 'singleChoice',
         name: 'birthSex',
@@ -1039,6 +1070,24 @@ define(['questAPI','underscore'], function(Quest,_){
         {
             inherit: 'basicPage',
             questions: [
+                {inherit:'EUMSStudent'}
+            ]
+        },
+        {
+            inherit: 'basicPage',
+            questions: [
+                {inherit:'degree'}
+            ]
+        },
+        {
+            inherit: 'basicPage',
+            questions: [
+                {inherit:'YearGroup'}
+            ]
+        },
+        {
+            inherit: 'basicPage',
+            questions: [
                 {inherit:'birthSex'}
             ]
         },
@@ -1071,6 +1120,14 @@ define(['questAPI','underscore'], function(Quest,_){
     ]);
 
     if (!isTouch) API.addSequence([
+        {
+            inherit: 'basicPage',
+            questions: [
+                {inherit: 'EUMSStudent', helpText: '', autoSubmit:false}, 
+                {inherit: 'degree', autoSubmit:false},
+                {inherit: 'YearGroup', autoSubmit:false},
+            ]
+        },
         {
             inherit: 'basicPage',
             questions: [
