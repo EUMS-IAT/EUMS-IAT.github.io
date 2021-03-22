@@ -178,13 +178,23 @@ define(['questAPI','underscore'], function(Quest,_){
         name: 'raceombmulti',
         stem: 'Please select the categories that comprise your race. (Click a category once to select it. Click it again to deselect. You may select as many categories as you wish. When you are finished, click Submit.)',
         answers: [
-            {text:'American Indian/Alaska Native',value:1},
-            {text:'East Asian',value:2},
-            {text:'South Asian',value:3},
-            {text:'Native Hawaiian or other Pacific Islander',value:4},
-            {text:'Black or African American',value:5},
-            {text:'White',value:6},
-            {text:'Other or Unknown',value:7}
+            {text:'English, Welsh, Scottish, Northern Irish or British',value:1},
+            {text:'Irish',value:2},
+            {text:'Gypsy or Irish Traveller',value:3},
+            {text:'Any other White background',value:4},
+            {text:'White and Black Caribbean',value:5},
+            {text:'White and Black African',value:6},
+            {text:'Any other Mixed or Multiple ethnic background',value:7},
+            {text:'White and Asian',value:8},
+            {text:'Pakistani',value:9},
+            {text:'Indian',value:10},
+            {text:'Bangladeshi',value:11},
+            {text:'Chinese',value:12},
+            {text:'Any other Asian background',value:13},
+            {text:'African',value:14},
+            {text:'Caribbean',value:15},
+            {text:'Any other Black, African or Caribbean background',value:16},
+            {text:'Any other ethnic group',value:17},
         ]
     });
 
@@ -1146,16 +1156,16 @@ define(['questAPI','underscore'], function(Quest,_){
         {
             inherit: 'basicPage',
             questions: [ //If required would be set to true, then participants cannot select one and leave the other empty.
-                {inherit:'raceomb', required:false},
-                {
-                    mixer:'branch',
-                    remix:true,
-                    conditions:[{compare: 'questions.raceomb002.response',to:8}],
-                    data: [
-                        {inherit:'raceombmulti'}
-                    ]
-                },
-                {inherit:'ethnicityomb', required:false}
+                {inherit:'raceombmulti', required:false},
+                // {
+                //     mixer:'branch',
+                //     remix:true,
+                //     conditions:[{compare: 'questions.raceomb002.response',to:8}],
+                //     data: [
+                //         {inherit:'raceombmulti'}
+                //     ]
+                // },
+                // {inherit:'ethnicityomb', required:false}
             ]
         },
         {
