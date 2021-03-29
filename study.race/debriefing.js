@@ -84,7 +84,7 @@ define(['questAPI'], function(Quest){
                 isTouch ? onFB : onFBtouch,
                 {
                     type:'info',
-                    description:'<h4>Click "Submit" to submit your answers and receive more information.</h4></p>'
+                    description:'<h2>By clicking "Submit" you are consenting for these results to be used in our study. You will be taken to a screen to show your results.</h2></p>'
                 }
             ]
         }
