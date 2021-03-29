@@ -21,6 +21,16 @@ define(['questAPI','underscore'], function(Quest,_){
         progressBar: isTouch ? 'Page <%= pagesMeta.number %> out of 6' : 'Page <%= pagesMeta.number %> out of 13'
     });
 
+    API.addPagesSet('basicPage2',{
+        noSubmit:false, //Change to true if you don't want to show the submit button.
+        decline: false,
+        // declineText: isTouch ? 'Decline' : 'Decline to Answer', 
+        autoFocus:true, 
+        header: 'Demographics',
+        numbered: false,
+        progressBar: isTouch ? 'Page <%= pagesMeta.number %> out of 6' : 'Page <%= pagesMeta.number %> out of 13'
+    });
+
     /**
 	* Question prototypes
 	*/
@@ -76,6 +86,7 @@ define(['questAPI','underscore'], function(Quest,_){
     API.addQuestionsSet('EUMSStudent',{
         inherit: 'singleChoice',
         name: 'EUMSStudent',
+        required:true,
         stem: 'Are you a Exeter University student?',
         answers: [
             {text:'Yes',value:1},
@@ -86,6 +97,7 @@ define(['questAPI','underscore'], function(Quest,_){
     API.addQuestionsSet('degree',{
         inherit: 'singleChoice',
         name: 'degree',
+        required:true,
         stem: 'What degree are you studying?',
         answers: [
             {text:'Medicine BMBS ',value:1},
@@ -95,6 +107,7 @@ define(['questAPI','underscore'], function(Quest,_){
     API.addQuestionsSet('YearGroup',{
         inherit: 'singleChoice',
         name: 'YearGroup',
+        required:true,
         stem: 'How many years of study (rounded up to the nearest whole number) have you undertaken at university?',
         answers: [
             {text:'One',value:1},
@@ -1078,50 +1091,51 @@ define(['questAPI','underscore'], function(Quest,_){
 
     if (isTouch) API.addSequence([
         {
-            inherit: 'basicPage',
+            inherit: 'basicPage2',
             questions: [
-                {inherit:'EUMSStudent'}
+       
+        {inherit:'EUMSStudent', required:true,}
             ]
         },
         {
-            inherit: 'basicPage',
+            inherit: 'basicPage2',
             questions: [
-                {inherit:'degree'}
+                {inherit:'degree', required:true,}
             ]
         },
         {
-            inherit: 'basicPage',
+            inherit: 'basicPage2',
             questions: [
-                {inherit:'YearGroup'}
+                {inherit:'YearGroup', required:true,}
             ]
         },
         {
-            inherit: 'basicPage',
+            inherit: 'basicPage2',
             questions: [
                 {inherit:'birthSex'}
             ]
         },
         {
-            inherit: 'basicPage',
+            inherit: 'basicPage2',
             questions: [
                 {inherit: 'genderIdentity'}
             ]
         },
         {
-            inherit: 'basicPage',
-            questions: [{inherit: 'birthYear'}]
-        },
-        {
-            inherit: 'basicPage',
+            inherit: 'basicPage2',
             questions: [ 
                 {inherit:'ethnicityomb', autoSubmit:true}
             ]
         },
         {
-            inherit: 'basicPage',
+            inherit: 'basicPage2',
             questions: [ 
                 {inherit:'raceombmulti', autoSubmit:true}
             ]
+        },
+        {
+            inherit: 'basicPage',
+            questions: [{inherit: 'birthYear'}]
         },
         {
             inherit: 'basicPage',
@@ -1131,7 +1145,7 @@ define(['questAPI','underscore'], function(Quest,_){
 
     if (!isTouch) API.addSequence([
         {
-            inherit: 'basicPage',
+            inherit: 'basicPage2',
             questions: [
                 {inherit: 'EUMSStudent', helpText: '', autoSubmit:false}, 
                 {inherit: 'degree', autoSubmit:false},
@@ -1139,22 +1153,14 @@ define(['questAPI','underscore'], function(Quest,_){
             ]
         },
         {
-            inherit: 'basicPage',
+            inherit: 'basicPage2',
             questions: [
                 {inherit: 'birthSex', helpText: '', autoSubmit:false}, 
                 {inherit: 'genderIdentity', autoSubmit:false}
             ]
         },
         {
-            inherit: 'basicPage',
-            questions: [{inherit: 'birthMonth'}]
-        },
-        {
-            inherit: 'basicPage',
-            questions: [{inherit: 'birthYear'}]
-        },
-        {
-            inherit: 'basicPage',
+            inherit: 'basicPage2',
             questions: [ //If required would be set to true, then participants cannot select one and leave the other empty.
                 {inherit:'raceombmulti', required:false},
                 // {
@@ -1168,6 +1174,12 @@ define(['questAPI','underscore'], function(Quest,_){
                 // {inherit:'ethnicityomb', required:false}
             ]
         },
+        {
+            inherit: 'basicPage',
+            questions: [{inherit: 'birthMonth',autoSubmit:false},
+                        {inherit: 'birthYear',autoSubmit:false}]
+        },
+
         {
             inherit: 'basicPage',
             questions: [{inherit: 'num'}]
