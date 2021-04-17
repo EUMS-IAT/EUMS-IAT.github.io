@@ -186,30 +186,94 @@ define(['questAPI','underscore'], function(Quest,_){
         ]
     });
 
-    API.addQuestionsSet('raceombmulti',{
+    API.addQuestionsSet('raceombmulti0',{
         inherit: 'multiChoice',
         name: 'raceombmulti',
         stem: 'Please select the categories that comprise your race. (Click a category once to select it. Click it again to deselect. You may select as many categories as you wish. When you are finished, click Submit.)',
         answers: [
-            {text:'English, Welsh, Scottish, Northern Irish or British',value:1, group:'White'},
-            {text:'Irish',value:2 ,group:'White'},
-            {text:'Gypsy or Irish Traveller',value:3 ,group:'White'},
-            {text:'Any other White background',value:4, group:'White'},
-            {text:'White and Black Caribbean',value:5 ,group:'Black'},
-            {text:'White and Black African',value:6 ,group:'Black'},
-            {text:'Any other Mixed or Multiple ethnic background',value:7},
-            {text:'White and Asian',value:8},
+        ]
+    });
+    API.addQuestionsSet('raceombmulti',{
+        inherit: 'multiChoice',
+        name: 'raceombmulti',
+        stem: 'White',
+        answers: [
+            {text:'English, Welsh, Scottish, Northern Irish or British',value:1},
+            {text:'Irish',value:2},
+            {text:'Gypsy or Irish Traveller',value:3},
+            {text:'Any other White background',value:4},
+        ]
+    });
+    API.addQuestionsSet('raceombmulti1',{
+        inherit: 'multiChoice',
+        name: 'raceombmulti1',
+        stem:"Mixed or Multiple ethnic groups",
+        answers: [
+            {text:'White and Black Caribbean',value:5},
+            {text:'White and Black African',value:6},
+            {text:'White and Asian',value:7},
+            {text:'Any other Mixed or Multiple ethnic background',value:8},
+        ]
+    });
+    API.addQuestionsSet('raceombmulti2',{
+        inherit: 'multiChoice',
+        name: 'raceombmulti2',
+        stem: 'Asian or Asian British',
+
+        answers: [
             {text:'Pakistani',value:9},
             {text:'Indian',value:10},
             {text:'Bangladeshi',value:11},
             {text:'Chinese',value:12},
             {text:'Any other Asian background',value:13},
+        ]
+    });
+    API.addQuestionsSet('raceombmulti3',{
+        inherit: 'multiChoice',
+        name: 'raceombmulti3',
+        stem: 'Black, African, Caribbean or Black British',
+
+        answers: [
+
             {text:'African',value:14},
             {text:'Caribbean',value:15},
             {text:'Any other Black, African or Caribbean background',value:16},
-            {text:'Any other ethnic group',value:17},
+
         ]
     });
+    API.addQuestionsSet('raceombmulti4',{
+        inherit: 'multiChoice',
+        name: 'raceombmulti4',
+        stem: 'Other',
+
+        answers: [
+            {text:'Arab',value:17},
+            {text:'Any other ethnic group',value:18},
+        ]
+    });
+    // API.addQuestionsSet('raceombmulti1',{
+    //     inherit: 'multiChoice',
+    //     name: 'raceombmulti1',
+    //     answers: [
+    //         {text:'English, Welsh, Scottish, Northern Irish or British',value:1},
+    //         {text:'Irish',value:2},
+    //         {text:'Gypsy or Irish Traveller',value:3},
+    //         {text:'Any other White background',value:4},
+    //         {text:'White and Black Caribbean',value:5},
+    //         {text:'White and Black African',value:6},
+    //         {text:'Any other Mixed or Multiple ethnic background',value:7},
+    //         {text:'White and Asian',value:8},
+    //         {text:'Pakistani',value:9},
+    //         {text:'Indian',value:10},
+    //         {text:'Bangladeshi',value:11},
+    //         {text:'Chinese',value:12},
+    //         {text:'Any other Asian background',value:13},
+    //         {text:'African',value:14},
+    //         {text:'Caribbean',value:15},
+    //         {text:'Any other Black, African or Caribbean background',value:16},
+    //         {text:'Any other ethnic group',value:17},
+    //     ]
+    // });
 
     API.addQuestionsSet('ethnicityomb',{
         inherit: isTouch ? 'singleChoice' : 'singleChoicedrop',
@@ -1130,7 +1194,12 @@ define(['questAPI','underscore'], function(Quest,_){
         {
             inherit: 'basicPage2',
             questions: [ 
-                {inherit:'raceombmulti', autoSubmit:true}
+                {inherit:'raceombmulti0', required:false},
+                {inherit:'raceombmulti', autoSubmit:false},
+                {inherit:'raceombmulti1', required:false},
+                {inherit:'raceombmulti2', required:false},
+                {inherit:'raceombmulti3', required:false},
+                {inherit:'raceombmulti4', required:false},
             ]
         },
         {
@@ -1162,7 +1231,13 @@ define(['questAPI','underscore'], function(Quest,_){
         {
             inherit: 'basicPage2',
             questions: [ //If required would be set to true, then participants cannot select one and leave the other empty.
+                {inherit:'raceombmulti0', required:false},
                 {inherit:'raceombmulti', required:false},
+                {inherit:'raceombmulti1', required:false},
+                {inherit:'raceombmulti2', required:false},
+                {inherit:'raceombmulti3', required:false},
+                {inherit:'raceombmulti4', required:false},
+
                 // {
                 //     mixer:'branch',
                 //     remix:true,
